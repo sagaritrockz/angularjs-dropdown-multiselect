@@ -56,7 +56,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             },
             link: function ($scope, $element, $attrs) {
                 var $dropdownTrigger = $element.children()[0];
-                
+
                 $scope.toggleDropdown = function () {
                     $scope.open = !$scope.open;
                 };
@@ -228,7 +228,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     $scope.deselectAll(false);
                     $scope.externalEvents.onSelectAll();
 
-                    angular.forEach($scope.options, function (value) {
+                    angular.forEach($filter('filter')($scope.options, $scope.searchFilter), function (value) {
                         $scope.setSelectedItem(value[$scope.settings.idProp], true);
                     });
                 };
